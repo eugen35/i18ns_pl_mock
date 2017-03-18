@@ -1,0 +1,11 @@
+#node modules
+node_modules
+
+#npm
+npm-debug.log*
+
+#webstorm
+.idea
+
+#моя временная заглушка для env
+#env_gitignored.js - в проекте нужно раскомментировать
