@@ -47,12 +47,10 @@ describe('I18n', () => {
 
 
   describe('Создание функций перевода с параметрами', function() {
-
     test('TWithParams', function () {
       const en_GB = i18n.createTWithParams({langtag: 'en-GB'});
       expect( en_GB('cow') ).toBe('cow-GB');
     });
-
     test('template TWithParams', function () {
       const en_GBtpl = i18n.createTplTWithParams({langtag: 'en-GB'});
       expect( en_GBtpl`cow` ).toBe('cow-GB');
