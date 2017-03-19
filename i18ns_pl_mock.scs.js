@@ -16,19 +16,23 @@ export default class I18n {
   constructor (params){
     //Непубличные свойства
     this._opts = Object.assign({}, InitOpts, params);
-    this._translations = {'ru-RU': ru_RU, 'en-GB': en_GB};
+    this._dictionaries = {'ru-RU': ru_RU, 'en-GB': en_GB};
   }
-  setOpts(params){ Object.assign(this._opts, params); }
+  setOpts(params){ Object.assign(this._opts, params); return this;}
   //Принимает или объект с параметрами или одну строку (key) или две строки (key, count в виде числа или в виде count в виде строки 'plural'). Возвращает перевод
   //@todo Очень очень отдалённое %Стиль кода% Вроде бы как count используется только для количественного (т.е. цифра), потому isPlural и выделен отдельно... А на входе мы допускаем такое смешение для удобства использования api. Отсюда при передаче объекта вместо строки, люди могут начать путаться и писать в count 'plural' вместо указания isPlural=true. Или ничего с этим не делать?
+
+  //Внимание! Данного метода нет в i18ns_pl
+  setDictionaries(dictionariesWithKeys){ Object.assign(this._dictionaries, dictionariesWithKeys); return this; }
+
   t (firstParam, sendedCount) {
     //--->Обрабатываем входные параметры функции. В частности _argsToParams(firstParam, sendedCount) приводит входные параметры к виду объекта (см. комментарий к данной функции)
     const { key, langtag, isPlural, count, countType } = Object.assign({}, this._opts, _argsToParams(firstParam, sendedCount)); //Получили все опции, если их не было, взяли дефолтовские
     //--->Окончили обрабатывать входные параметры функции
     let translateResult;
     try {
-      //---> Работа с _translations
-      const keyNode = this._translations[langtag][key];
+      //---> Работа с _dictionaries
+      const keyNode = this._dictionaries[langtag][key];
       translateResult = 'string' == typeof keyNode ?
         keyNode
         :
@@ -39,7 +43,7 @@ export default class I18n {
             keyNode.plural
             :
             keyNode.other;
-      //---> Окончили работу с _translations
+      //---> Окончили работу с _dictionaries
       if ( undefined != translateResult ) { //Перевод найден
         return translateResult;
       } else { //Перевод не найден

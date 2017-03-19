@@ -1,14 +1,14 @@
 import I18n from '../i18ns_pl_mock.scs';
 
 let i18n = new I18n({langtag:'ru-RU'});
-i18n._translations["ru-RU"] = {
+i18n._dictionaries["ru-RU"] = {
   "bill": "счёт",
   "cow": {
     "few":"быка",
     "many":"быков"
   }
 };
-i18n._translations["en-GB"] = {
+i18n._dictionaries["en-GB"] = {
   "man": {
     "other"  :"men-GB"
   },
@@ -46,7 +46,7 @@ describe('I18n', () => {
   });
 
 
-  describe.skip('Создание функций перевода с параметрами', function() {
+  describe('Создание функций перевода с параметрами', function() {
 
     test('TWithParams', function () {
       const en_GB = i18n.createTWithParams({langtag: 'en-GB'});
@@ -58,6 +58,30 @@ describe('I18n', () => {
       expect( en_GBtpl`cow` ).toBe('cow-GB');
     });
 
-  })
+  });
+
+  describe('setDictionaries - Установка своих словарей', function() {
+    const oneDictionary = {"de-DE" : {
+      "bill": "Rechnung"
+    }};
+    const twoDictionaries = {
+      "en-US" : {
+        "bill": "bill in en-US"
+      },
+      "en-AU" : {
+        "bill": "bill in en-AU"
+      }
+    };
+    test('Ставим один словарь', function () {
+      i18n.setDictionaries(oneDictionary);
+      expect( i18n.t({key:'bill', langtag:"de-DE"}) ).toBe('Rechnung')
+    });
+
+    test('Ставим два словаря', function () {
+      i18n.setDictionaries(twoDictionaries);
+      expect( i18n.t({key:'bill', langtag:"en-AU"}) ).toBe('bill in en-AU');
+      expect( i18n.t({key:'bill', langtag:"en-US"}) ).toBe('bill in en-US');
+    });
+  });
 
 });
