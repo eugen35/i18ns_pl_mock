@@ -1,11 +1,13 @@
 {
-  "name": "todomvc",
-  "version": "0.0.0",
-  "description": "TodoMVC example for redux",
-  "main": "server.js",
+  "name": "i18ns_pl_mock",
+  "version": "1.0.0",
+  "description": "Mock for i18ns_pl",
+  "main": "i18ns_pl_mock.scs.js",
   "scripts": {
     "start": "node server.js",
     "test": "jest",
+    "bundle":"webpack",
+    "bundle:watch":"webpack --watch",
     "test:watch": "npm test -- --watch",
     "create_doc_with_jsdoc": "npm run create_stack_doc_with_jsdoc && npm run create_project_doc_with_jsdoc",
     "create_stack_doc_with_jsdoc": "jsdoc ./src/stack ./test/unit --recurse --destination ./doc/auto_generated/jsdoc/stackdoc --template node_modules/docdash",
@@ -14,17 +16,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gaearon/redux-devtools.git"
+    "url": "https://github.com/eugen35/i18ns_pl_mock.git"
   },
   "keywords": [
-    "webpack",
-    "flux"
+    "i18n"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gaearon/redux-devtools/issues"
+    "url": "https://github.com/eugen35/i18ns_pl_mock/issues"
   },
-  "homepage": "https://github.com/gaearon/redux-devtools#readme",
+  "homepage": "https://github.com/eugen35/i18ns_pl_mock#readme",
   "dependencies": {
     "object-path": "^0.11.4",
     "plurals-cldr": "^1.0.3"

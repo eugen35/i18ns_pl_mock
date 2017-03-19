@@ -6,17 +6,13 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
-    'react-hot-loader/patch',
-    './index'
+    './i18ns_pl_mock.scs'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/static/'
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
   resolve: {
     extensions: ['', '.js']
   },
