@@ -1,7 +1,7 @@
 import plural from 'plurals-cldr';
 
-import {ru_RU} from '../../data/translations/ru-RU.scs';
-import {en_GB} from '../../data/translations/en-GB.scs';
+import {ru_RU} from './data/translations/ru-RU.scs';
+import {en_GB} from './data/translations/en-GB.scs';
 
 const InitOpts = {
   langtag: 'ru-RU',

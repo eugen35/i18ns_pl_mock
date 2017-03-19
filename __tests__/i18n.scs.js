@@ -1,4 +1,4 @@
-import I18n from '../../utils/i18n/i18ns_pl_mock.scs';
+import I18n from '../i18ns_pl_mock.scs';
 
 let i18n = new I18n({langtag:'ru-RU'});
 i18n._translations["ru-RU"] = {

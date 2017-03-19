@@ -18,11 +18,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   resolve: {
-    alias: {
-      'redux-devtools/lib': path.join(__dirname, 'redux_devtools'),
-      'redux-devtools': path.join(__dirname, 'redux_devtools'),
-      'react': path.join(__dirname, 'node_modules', 'react')
-    },
     extensions: ['', '.js']
   },
   resolveLoader: {
