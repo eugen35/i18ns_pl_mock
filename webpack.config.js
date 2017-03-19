@@ -7,7 +7,9 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/static/'
+    //publicPath: '/static/',
+    library: "i18ns_pl_mock",
+    libraryTarget: "umd"
   },
   resolve: {
     extensions: ['', '.js']

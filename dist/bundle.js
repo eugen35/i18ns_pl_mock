@@ -1,4 +1,14 @@
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["i18ns_pl_mock"] = factory();
+	else
+		root["i18ns_pl_mock"] = factory();
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 
@@ -34,7 +44,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/static/";
+/******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -65,4 +75,6 @@
 	eval("\"use strict\";\n\nexports.__esModule = true;\nvar en_GB = exports.en_GB = {\n  \"Signin\": \"Войти\",\n  \"Signout\": \"Выйти\",\n  \"Project\": {\n    \"plural\": \"Проекты\",\n    \"one\": \"Проект\",\n    \"few\": \"Проекта\",\n    \"many\": \"Проектов\",\n    \"other\": \"Проекта\"\n  },\n  \"Worker\": {\n    \"plural\": \"Работники\",\n    \"one\": \"Работник\",\n    \"few\": \"Работника\",\n    \"many\": \"Работников\",\n    \"other\": \"Работника\"\n  },\n  \"WorkerType\": {\n    \"plural\": \"Типы работников\",\n    \"one\": \"Тип работника\"\n  }\n};\n\n//////////////////\n// WEBPACK FOOTER\n// ./data/translations/en-GB.scs.js\n// module id = 3\n// module chunks = 0\n//# sourceURL=webpack:///./data/translations/en-GB.scs.js?");
 
 /***/ }
-/******/ ]);
+/******/ ])
+});
+;
