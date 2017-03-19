@@ -2,7 +2,7 @@
   "name": "i18ns_pl_mock",
   "version": "1.0.0",
   "description": "Mock for i18ns_pl",
-  "main": "i18ns_pl_mock.scs.js",
+  "main": "/dist/bundle.js",
   "scripts": {
     "start": "node server.js",
     "test": "jest",
