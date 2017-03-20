@@ -4,6 +4,7 @@ import {ru_RU} from './data/translations/ru-RU.scs';
 import {en_GB} from './data/translations/en-GB.scs';
 
 const InitOpts = {
+  debug: false,
   langtag: 'ru-RU',
   isPlural: undefined, //true, если хотим получить множественное число в именительном падеже, например, - "Проекты" (count тогда вне зависимости от его указания НЕ ПРИНИМАЕТСЯ ВО ВНИМАНИЕ).
   count: 1,
@@ -47,10 +48,10 @@ export default class I18n {
       if ( undefined != translateResult ) { //Перевод найден
         return translateResult;
       } else { //Перевод не найден
-        console.log(`Warning! Translation not found! \nStart parameters: ${JSON.stringify({key, langtag, isPlural, count, countType}, null, '\t')}`);
+        if ( this._opts.debug ) console.warn(`Warning! Translation not found! \nStart parameters: ${JSON.stringify({key, langtag, isPlural, count, countType}, null, '\t')}`);
       }
     } catch(err) {
-      console.log('Не загружен такой языковой файл ', langtag, ' или в файле не найден ключ ', key);
+      if ( this._opts.debug ) console.warn('Не загружен такой языковой файл ', langtag, ' или в файле не найден ключ ', key);
     }
     return key; // Если не нашли перевод (даже с поиском по фаллбакам), - возвращаем key
   }
