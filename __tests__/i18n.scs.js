@@ -13,6 +13,10 @@ i18n._dictionaries["ru-RU"] = {
   }
 };
 i18n._dictionaries["en-GB"] = {
+  "pub": {
+    "plural": "pubs",
+    "one": "pub"
+  },
   "man": {
     "other"  :"men-GB"
   },
@@ -62,6 +66,9 @@ describe('I18n', () => {
     test('TWithParams', function () {
       const en_GB = i18n.createTWithParams({langtag: 'en-GB'});
       expect( en_GB('cow') ).toBe('cow-GB');
+      const ru_RU = i18n.createTWithParams({langtag: 'ru-RU'});
+      expect( i18n.t({key:'pub', isPlural: true}) ).toBe('бары');
+      expect( ru_RU({key:'pub', isPlural: true}) ).toBe('бары');
     });
     test('template TWithParams', function () {
       const en_GBtpl = i18n.createTplTWithParams({langtag: 'en-GB'});
