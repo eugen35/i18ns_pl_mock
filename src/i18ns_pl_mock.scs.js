@@ -1,11 +1,13 @@
+/**
+ * @type {{debug: boolean, langtag: string, isPlural: undefined, count: number, countType: string}}
+ */
 import plural from 'plurals-cldr';
 
 import {ru_RU} from '../data/translations/ru-RU.scs';
 import {en_GB} from '../data/translations/en-GB.scs';
+import {genKeyFromTplStr} from "./helpers.scs";
+import {TplStrValuesReplacer} from "./Constants.scs";
 
-/**
- * @type {{debug: boolean, langtag: string, isPlural: undefined, count: number, countType: string}}
- */
 const InitOpts = {
   debug: false,
   langtag: 'ru-RU',
@@ -82,6 +84,32 @@ class I18n {
   }
 
   /**
+   * Метод для перевода шаблонных строк.
+   * Нужна, поскольку до подстановки значений в строку она не может выступать ключом.
+   * А после подстановки - в зависимости от значений будут разные ключи.
+   * По-другому, шаблонную строку вроде бы как особо никак и не обработать
+   * @example
+   * const id = 100;
+   * console.log(tTplStr`${id} is cool`); // '100 - это круто'
+   * @todo /1/ Избавляется от названий переменных, т.е. в шаблоне их можно переименовывать, но при этом теряется возможность их переставлять при переводе. Оставить ли так? Или не избавляться от названий переменных (избавиться придётся, т.к. js вроде бы не передаёт названия переменных)? Можно избавиться от названий переменных, если указывать в переводе вместо ${.} номер индекса в массиве значений (хэщ при этом может остаться тот же самый). Например, ${1} - тогда можно будет менять местами переменные в строке-оригинале и в переводе
+   * @param strings
+   * @param values
+   * @returns {string}
+   */
+  tTplStr (strings, ...values) {
+    // Даже если (genKeyFromTplStr(strings)===this.t(genKeyFromTplStr(strings))),
+    // т.е. перевод не нашёлся.
+    // чтобы вернуть изначальную строку, алгоритм все равно нужно запустить
+    const translateArr = this.t(genKeyFromTplStr(strings)).split(TplStrValuesReplacer);
+    let translateResult='';
+    translateArr.forEach((el,index) => {
+      if (el) translateResult += el;
+      if (values[index]) translateResult+=values[index];
+    });
+    return translateResult;
+  }
+
+  /**
    * Фабрика по созданию функций перевода t() с предустановленными оциями.
    * При этом, данные функции также могут принять опции объектом, а не только key в виде строки. За это отвечает _argsToParams(firstParam, sendedCount)
    * @param params
@@ -101,6 +129,7 @@ class I18n {
       {}, params, {key: strings[0]}, (undefined == values ? {} : values)
     ))
   }
+
 }
 
 module.exports = I18n;

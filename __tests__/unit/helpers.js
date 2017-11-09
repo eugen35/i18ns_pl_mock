@@ -1,4 +1,4 @@
-import {genKeyFromTplStr, tTplStr} from "../../src/helpers";
+import {genKeyFromTplStr, tTplStr} from "../../src/helpers.scs";
 describe('helpers', function() {
   test.skip('genKeyFromTplStr()', function () {
     const id = 1;

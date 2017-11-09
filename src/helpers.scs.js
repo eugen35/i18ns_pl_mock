@@ -1,5 +1,6 @@
+import {TplStrValuesReplacer} from "./Constants.scs";
 export function genKeyFromTplStr(strings){
-  return strings.reduce((previousValue, currentItem) => previousValue + '${.}' + currentItem);
+  return strings.reduce((previousValue, currentItem) => previousValue + TplStrValuesReplacer + currentItem);
 }
 
 
