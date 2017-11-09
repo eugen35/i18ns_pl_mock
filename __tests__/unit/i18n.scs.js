@@ -1,17 +1,6 @@
-import I18n from '../i18ns_pl_mock.scs';
+import I18n from '../../src/i18ns_pl_mock.scs';
 
 let i18n = new I18n({langtag:'ru-RU'});
-i18n._dictionaries["ru-RU"] = {
-  "bill": "счёт",
-  "cow": {
-    "few":"быка",
-    "many":"быков"
-  },
-  "pub": {
-    "plural": "бары",
-    "one": "бар"
-  }
-};
 i18n._dictionaries["en-GB"] = {
   "pub": {
     "plural": "pubs",
@@ -27,6 +16,18 @@ i18n._dictionaries["en-GB"] = {
     "one"   :"cow-GB",
     "other"  :"cows-GB"
   }
+};
+i18n._dictionaries["ru-RU"] = {
+  "bill": "счёт",
+  "cow": {
+    "few":"быка",
+    "many":"быков"
+  },
+  "pub": {
+    "plural": "бары",
+    "one": "бар"
+  },
+  "template sentence": `Строка с шаблоном`
 };
 
 describe('I18n', () => {
@@ -74,7 +75,6 @@ describe('I18n', () => {
       const en_GBtpl = i18n.createTplTWithParams({langtag: 'en-GB'});
       expect( en_GBtpl`cow` ).toBe('cow-GB');
     });
-
   });
 
   describe('setDictionaries - Установка своих словарей', function() {

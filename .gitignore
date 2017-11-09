@@ -4,8 +4,15 @@ node_modules
 #npm
 npm-debug.log*
 
+#yarn
+yarn.lock
+
 #webstorm
 .idea
 
 #моя временная заглушка для env
 #env_gitignored.js - в проекте нужно раскомментировать
+
+#автогенерируемая документация
+__doc__/auto_generated/*
+

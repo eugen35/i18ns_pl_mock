@@ -3,7 +3,7 @@ var webpack = require('webpack');
 
 module.exports = {
   devtool: 'eval',
-  entry: './i18ns_pl_mock.scs',
+  entry: './src/i18ns_pl_mock.scs',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',

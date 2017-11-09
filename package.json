@@ -6,12 +6,11 @@
   "scripts": {
     "start": "node server.js",
     "test": "jest",
-    "bundle":"webpack",
-    "bundle:watch":"webpack --watch",
+    "build":"webpack",
+    "build:watch":"webpack --watch",
     "test:watch": "npm test -- --watch",
-    "create_doc_with_jsdoc": "npm run create_stack_doc_with_jsdoc && npm run create_project_doc_with_jsdoc",
-    "create_stack_doc_with_jsdoc": "jsdoc ./src/stack ./test/unit --recurse --destination ./doc/auto_generated/jsdoc/stackdoc --template node_modules/docdash",
-    "create_project_doc_with_jsdoc": "jsdoc ./src/project ./test/unit --recurse --destination ./doc/auto_generated/jsdoc/projectdoc --template node_modules/docdash",
+    "doc": "npm run create_doc_with_jsdoc",
+    "create_doc_with_jsdoc": "jsdoc ./src ./__tests__/unit --recurse --destination ./__doc__/auto_generated/jsdoc/projectdoc --template node_modules/docdash -c ./jsdoc.config.js",
     "create_doc_with_mocha_from_all_unit_tests": "mocha --ui bdd --compilers js:babel-register --timeout 60000 test/unit/**/*.js --reporter markdown > doc/auto_generated/mocha_markdown/doc_from_all_unit_tests.md || exit 0"
   },
   "repository": {
@@ -38,6 +37,7 @@
     "babel-preset-es2015-loose": "^6.1.3",
     "babel-preset-stage-0": "^6.3.13",
     "chai": "^3.5.0",
+    "docdash": "^0.4.0",
     "jest": "^19.0.2",
     "node-libs-browser": "^0.5.2",
     "raw-loader": "^0.5.1",
