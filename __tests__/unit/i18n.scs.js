@@ -27,7 +27,13 @@ i18n._dictionaries["ru-RU"] = {
     "plural": "бары",
     "one": "бар"
   },
-  "template sentence": `Строка с шаблоном`
+  'Entry with id=${.} is not found': 'Запись с id=${.} не найдена',
+  'I love ${.}': 'Люблю ${.}',
+  '${.} is cool': '${.} - это круто',
+  '${.} translated ${.}': '${.} переведено ${.}',
+  'One ${.} two ${.} three': 'Один ${.} два ${.} три',
+  '${.}': '${.}',
+  'Repa': 'Репа',
 };
 
 describe('I18n', () => {
@@ -61,6 +67,19 @@ describe('I18n', () => {
         i18n.t('noexists')
       ).toBe('noexists');
     });
+  });
+
+  test('tTplStr()', function () {
+    const id = 100, a=23, b='репа';
+    expect( i18n.tTplStr`Entry with id=${id} is not found` ).toBe('Запись с id=100 не найдена');
+    expect( i18n.tTplStr`I love ${id}` ).toBe('Люблю 100');
+    expect( i18n.tTplStr`${id} is cool` ).toBe('100 - это круто');
+    expect( i18n.tTplStr`${id} some text` ).toBe('100 some text');
+    expect( i18n.tTplStr`${a} translated ${b}` ).toBe('23 переведено репа');
+    expect( i18n.tTplStr`One ${id} two ${a} three` ).toBe('Один 100 два 23 три');
+    expect( i18n.tTplStr`${id}` ).toBe('100');
+    expect( i18n.tTplStr`Repa` ).toBe('Репа');
+    expect( i18n.tTplStr`Repa1` ).toBe('Repa1');
   });
 
   describe('Создание функций перевода с параметрами', function() {
