@@ -1,9 +1,7 @@
 var path = require('path');
-var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'eval',
-  entry: './src/i18ns_pl_mock.scs',
+  entry: './index.js',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',

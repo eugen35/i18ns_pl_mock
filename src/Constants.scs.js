@@ -1,13 +1,17 @@
 /** @module Constants */
 
 /**
- * Заменитель переменных при создании файлов перевода для шаблонных строк
- * @example
- * // Если заменитель ${.}, то вместо строчки ниже
- * {'${id} is cool': '${id} крут'}
- * // нужно будет писать в файле перевода как в key, так и в переводе по данному key строчку ниже
- * {'${.} is cool': '${.} крут'}
- * @todo /1/ Наверное, вид заменителя нужно включить в I18n.opts
+ * @const
  * @type {string}
  */
-export const TplStrValuesReplacer = '${.}';
+export const DefaultTplVariableLeftBorder = '${';
+/**
+ * @const
+ * @type {string}
+ */
+export const DefaultTplVariableRightBorder = '}';
+/**
+ * @const
+ * @type {string}
+ */
+export const DefaultTplStrValuesReplacer = '.';
