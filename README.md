@@ -18,48 +18,68 @@
 # Пример использования
 ```
 import I18n from 'i18ns_pl_mock';
-import {ruRU} from './configs/commercialProposal/ru-RU';
+// если локаль (словарь) у нас в виде js-константы (см. ниже пример)
+import {ruRU} from './configs/commercialProposal/locales/ru/ru-RU';
+import {enEN} from './configs/commercialProposal/locales/en/en-EN';
 
 let i18n = new I18n({langtag:'ru-RU'}); //Ставим русский язык по умолчанию
-i18n.setDictionaries(ruRU);
+i18n.setDictionaries({'ru-RU': ruRU, 'en-EN': enEN});
 
-console.log(i18n.t('bill')); // напечатает: "счёт"
+console.log(i18n.t('signout')); // напечатает: "выйти"
 ```
 Более подробно - см. папку \__tests__.
 
 См. также раздел "Генерация автодокументации" ниже.
 
-# Немного об опциях t
+# Немного об опциях i18n.t()
 ## isPlural = undefined
 //true, если хотим получить множественное число в именительном падеже, например, - "Проекты" (count тогда вне зависимости от его указания НЕ ПРИНИМАЕТСЯ ВО ВНИМАНИЕ).
 ## count = 1
 ## countType = 'cardinal'
 // Ещё возможный вариант - 'ordinal'
 
-# Создание словаря
+# Локали (словари)
 ## Общие положения
-Словарь лучше писать как строгий json-объект. Но для упрощения его импорта можно сделать как константу javascript. 
+Словарь нужно писать как json-объект и хранить его в json-файле:
 ```
-export const ruRU = {"ru-RU" : {  
-  "purchased product": "покупное комплектующее изделие",
-  "bill": "счёт",
-  "cow": {
-    "few":"быка",
-    "many":"быков"
-  },
-  "pub": {
-    "plural": "бары",
-    "one": "бар"
-  }
-}}
+{
+    "signin"      : "войти",
+    "signout"     : "выйти",
+    "project"     : {
+      "plural"    : "проекты",
+      "one"       : "проект",
+      "few"       : "проекта",
+      "many"      : "проектов",
+      "other"     : "проекта"
+    }    
+}
 ```
-## По поводу правил, связанных с выбором множественного числа слова
+Но для упрощения его импорта можно сделать как константу javascript. 
+```
+export const ruRU = {  
+     "signin"      : "войти",
+     "signout"     : "выйти",
+     "project"     : {
+       "plural"    : "проекты",
+       "one"       : "проект",
+       "few"       : "проекта",
+       "many"      : "проектов",
+       "other"     : "проекта"
+     }    
+}
+```
+### По поводу правил, связанных с выбором множественного числа слова
 - http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html
 - В частности для русского: http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html#ru
 
+## Рекомендуемая структура папок, где размещаются локали (словари) 
+locales\ - папка с локалями
 
-
-
+    en\ - папка с локалями en
+    
+    ru\ - папка с локалями ru
+    
+    ...
 
 # todos
 /1/ По идее, нужно ещё опцию акроним сделать или отдельным пакетом это сделать
