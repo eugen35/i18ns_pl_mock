@@ -121,7 +121,27 @@ describe('I18n', () => {
       expect( i18n.t({key:'bill', langtag:"en-AU"}) ).toBe('bill in en-AU');
       expect( i18n.t({key:'bill', langtag:"en-US"}) ).toBe('bill in en-US');
     });
+  });
 
+  describe('Две сущности i18n', function() {
+    const emptyRuRU  = {'ru-RU' : {               }};
+    const oneRuRU    = {'ru-RU' : {'bill': 'счёт1'}};
+    const secondRuRU = {'ru-RU' : {'bill': 'счёт2'}};
+    let i18n1 = new I18n({langtag:'ru-RU'});
+    let i18n2 = new I18n({langtag:'ru-RU'});
+    i18n1.setDictionaries(oneRuRU   );
+    i18n2.setDictionaries(secondRuRU);
+
+    test('Две сущности i18n', function () {
+      expect( i18n1.t('bill')).toBe('счёт1');
+      expect( i18n2.t('bill')).toBe('счёт2');
+    });
+
+    test('Меняем один словарь на другой в одной из сущностей', function () {
+      i18n2.setDictionaries(emptyRuRU);
+      expect( i18n1.t('bill')).toBe('счёт1');
+      expect( i18n2.t('bill')).toBe('bill');
+    });
   });
 
 });
