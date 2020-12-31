@@ -4,7 +4,6 @@
   "description": "Mock for i18ns_pl",
   "main": "./dist/bundle.js",
   "scripts": {
-    "start": "node server.js",
     "test": "jest",
     "build": "webpack",
     "build:watch": "webpack --watch",

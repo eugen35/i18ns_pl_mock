@@ -69,6 +69,8 @@ describe('I18n', () => {
     });
   });
 
+
+
   test('tTplStr()', function () {
     const id = 100, a=23, b='репа';
     expect( i18n.tTplStr`Entry with id=${id} is not found` ).toBe('Запись с id=100 не найдена');
@@ -97,20 +99,21 @@ describe('I18n', () => {
   });
 
   describe('setDictionaries - Установка своих словарей', function() {
-    const oneDictionary = {"de-DE" : {
-      "bill": "Rechnung"
-    }};
+    const oneDictionary     = {"de-DE" : {"bill": "Rechnung" }};
+    const oneDictionaryVar2 = {"de-DE" : {"bill": "Rechnung2"}};
     const twoDictionaries = {
-      "en-US" : {
-        "bill": "bill in en-US"
-      },
-      "en-AU" : {
-        "bill": "bill in en-AU"
-      }
+      "en-US" : {"bill": "bill in en-US"},
+      "en-AU" : {"bill": "bill in en-AU"}
     };
     test('Ставим один словарь', function () {
       i18n.setDictionaries(oneDictionary);
-      expect( i18n.t({key:'bill', langtag:"de-DE"}) ).toBe('Rechnung');
+      expect( i18n.t({key: 'bill', langtag: "de-DE"}) ).toBe('Rechnung');
+    });
+
+    test('Меняем один словарь на другой', function () {
+      i18n.setDictionaries(oneDictionary); //de-DE
+      i18n.setDictionaries(oneDictionaryVar2); //второй вариант de-DE  ставим вместо установленного ранее
+      expect( i18n.t({key:'bill', langtag:"de-DE"}) ).toBe('Rechnung2');
     });
 
     test('Ставим два словаря', function () {
@@ -118,6 +121,7 @@ describe('I18n', () => {
       expect( i18n.t({key:'bill', langtag:"en-AU"}) ).toBe('bill in en-AU');
       expect( i18n.t({key:'bill', langtag:"en-US"}) ).toBe('bill in en-US');
     });
+
   });
 
 });
