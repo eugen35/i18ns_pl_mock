@@ -21,7 +21,7 @@ export function genKeyFromTplStr(strings, TplVariableWithBordersReplacer = Defau
  * {'${id} is cool': '${id} крут'}
  * // нужно будет писать в файле перевода как в key, так и в переводе по данному key строчку ниже
  * {'${.} is cool': '${.} крут'}
- *  * @todo /3/ Если TplStrValuesReplacer, TplVariableLeftBorder, TplVariableRightBorder нужно включить в I18n.opts, то genKeyFromTplStr придётся сделать методом класса I18n или что-то в этом роде
+ *  * @todo /3/ Если DefaultTplStrValuesReplacer, TplVariableLeftBorder, TplVariableRightBorder нужно включить в I18n.opts, то genKeyFromTplStr придётся сделать методом класса I18n или что-то в этом роде
  *  */
 
 /**

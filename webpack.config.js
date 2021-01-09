@@ -1,4 +1,4 @@
-var path = require('path');
+const path = require('path');
 
 module.exports = {
   entry: './index.js',
@@ -10,19 +10,20 @@ module.exports = {
     libraryTarget: "umd"
   },
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['.js']
   },
   resolveLoader: {
-    'fallback': path.join(__dirname, 'node_modules')
+    modules: ['node_modules'],
   },
+  /*
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
-      loaders: ['babel'],
+      loader: 'babel-loader',
       exclude: /node_modules/,
       include: __dirname
     }]
-  },
+  },*/
   watchOptions: {
     aggregateTimeout: 300, // Delay the rebuilt after the first change. Value is a time in ms.
     //poll: true // bool - enable / disable polling or number - polling delay

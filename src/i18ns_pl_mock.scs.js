@@ -6,7 +6,7 @@ import plural from 'plurals-cldr';
 import {ru_RU} from '../data/translations/ru-RU.scs';
 import {en_GB} from '../data/translations/en-GB.scs';
 import {genKeyFromTplStr} from "./helpers.scs";
-import {TplStrValuesReplacer} from "./Constants.scs";
+import {DefaultTplStrValuesReplacer} from "./Constants.scs";
 
 const InitOpts = {
   debug: false,
@@ -21,7 +21,7 @@ const InitOpts = {
  * Класс API-заглушка от недописанной мною библиотечки i18ns_pl. Он работает упрощённо, воспроизводя по мере возможности API i18ns_pl.
  * @todo /1/ Нужно сделать функцию перевода шаблона (но не шаблонной строки ``), берующую то как выделяются переменные (<% %> или ${} и т.п.; ${} - по умолчанию) из opts. При этом значения в шаблон не подставляются
  */
-class I18n {
+export default class I18n {
   /**
    * Конструктор
    * @param {Object} params - Опции. Данные опции перетирают опции, установленные по умолчанию @see {@link InitOpts}
@@ -102,7 +102,7 @@ class I18n {
     // Даже если (genKeyFromTplStr(strings)===this.t(genKeyFromTplStr(strings))),
     // т.е. перевод не нашёлся.
     // чтобы вернуть изначальную строку, алгоритм все равно нужно запустить
-    const translateArr = this.t(genKeyFromTplStr(strings)).split(TplStrValuesReplacer);
+    const translateArr = this.t(genKeyFromTplStr(strings)).split(DefaultTplStrValuesReplacer);
     let translateResult='';
     translateArr.forEach((el,index) => {
       if (el) translateResult += el;
@@ -134,7 +134,7 @@ class I18n {
 
 }
 
-module.exports = I18n;
+
 
 /**
  * ВНИМАНИЕ! Данная функция полностью идентична ей же в i18ns_pl.
